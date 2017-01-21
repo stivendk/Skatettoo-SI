@@ -36,6 +36,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Noticia.findByTitulo", query = "SELECT n FROM Noticia n WHERE n.titulo = :titulo")})
 public class Noticia implements Serializable {
 
+    @Size(max = 50)
+    @Column(name = "imgn")
+    private String imgn;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,9 +51,6 @@ public class Noticia implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "titulo")
     private String titulo;
-    @Lob
-    @Column(name = "imgn")
-    private byte[] imgn;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -89,13 +90,6 @@ public class Noticia implements Serializable {
         this.titulo = titulo;
     }
 
-    public byte[] getImgn() {
-        return imgn;
-    }
-
-    public void setImgn(byte[] imgn) {
-        this.imgn = imgn;
-    }
 
     public String getDescripcion() {
         return descripcion;
@@ -136,6 +130,14 @@ public class Noticia implements Serializable {
     @Override
     public String toString() {
         return "com.skatettoo.backend.persistence.entities.Noticia[ idNoticia=" + idNoticia + " ]";
+    }
+
+    public String getImgn() {
+        return imgn;
+    }
+
+    public void setImgn(String imgn) {
+        this.imgn = imgn;
     }
     
 }

@@ -62,5 +62,7 @@ public class CitaManagedBean implements Serializable {
     public List<Cita> listarCita(){
         return citafc.findAll();
     }
+
+    
     
 }

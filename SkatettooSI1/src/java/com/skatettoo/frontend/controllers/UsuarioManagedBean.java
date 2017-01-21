@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -47,7 +49,7 @@ public class UsuarioManagedBean implements Serializable, Managedbean<Usuario> {
         usuariofc.create(usuario);
     }
     
-    public void eliminarUsuario(){
+    public void eliminarUsuario(Usuario u){
         usuariofc.remove(usuario);
     }
     
@@ -57,13 +59,14 @@ public class UsuarioManagedBean implements Serializable, Managedbean<Usuario> {
     
     public String actualizarUsuario(Usuario u){
         usuario = u;
-        return "";
+        return "/pages/editar";
     }
     
     public List<Usuario> listarUsuario(){
         return usuariofc.findAll();
     }
 
+    
     @Override
     public Usuario getObject(Integer i) {
         return usuariofc.find(i);

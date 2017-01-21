@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Publicar Diseño | Skatettoo</title>
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../../css/estilos.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/parallax.css"></link>
+        <script src="../../../js/jquery-2.2.3.min.js"></script>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img class="logo" src="../../../img/ST Logotype.png"></img>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="noticia.xhtml">Crear noticia</a></li>
+                        <li><a href="#">Crear Diseños</a></li>
+                        <li><a href="csucursal.xhtml">Sucursal</a></li>
+                        <li><a href="ccitas.xhtml">Citas</a></li>
+                        
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"></a></li>
+                        <li><a href="../../../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <f:view>
+            <center><h:form>
+                <h1><h:outputText value="Nuevo Diseño"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="NombreDisenio:" for="nombreDisenio" />
+                    <p:inputText id="nombreDisenio" value="#{disenioManagedBean.disenio.nombreDisenio}" title="NombreDisenio" required="true" requiredMessage="The NombreDisenio field is required."/>
+                    <p:outputLabel value="Sesiones Recomendadas:" for="sesionesRecomendadas" />
+                    <p:inputText id="sesionesRecomendadas" value="#{disenioManagedBean.disenio.sesionesRecomendadas}" title="SesionesRecomendadas" required="true" requiredMessage="The SesionesRecomendadas field is required."/>
+                    <p:outputLabel value="Precio Disenio:" for="precioDisenio" />
+                    <p:inputText id="precioDisenio" value="#{disenioManagedBean.disenio.precioDisenio}" title="PrecioDisenio" required="true" requiredMessage="The PrecioDisenio field is required."/>
+                    <p:outputLabel value="Anotaciones:" for="anotaciones" />
+                    <p:inputTextarea rows="4" cols="30" id="anotaciones" value="#{disenioManagedBean.disenio.anotaciones}" title="Anotaciones" required="true" requiredMessage="The Anotaciones field is required."/>
+                    <p:outputLabel value="Estilo Disenio:" for="idEstiloDisenio" />
+                    <h:selectOneMenu id="idEstiloDisenio" value="#{disenioManagedBean.disenio.idEstiloDisenio}" required="true" requiredMessage="The IdEstiloDisenio field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{estiloDisenioManagedBean.listarEstilo}" var="estiilo" itemLabel="#{estiilo.nombreEstilo}"/>
+                    </h:selectOneMenu>
+                    <p:outputLabel value="Tatuador:" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{disenioManagedBean.disenio.idUsuario}" required="true" requiredMessage="The IdUsuario field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{usuarioManagedBean.listarUsuario}" var="tatuador" itemLabel="#{tatuador.nombre} #{tatuador.apellido}"/>
+                    </h:selectOneMenu>
+                </p:panelGrid>
+                <p:commandButton value="Actualizar" actionListener="#{disenioManagedBean.modificarDisenio()}"/>
+            </h:form></center>
+
+        </f:view>
+
+    </h:body>
+</html>
+

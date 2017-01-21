@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Noticia</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <p:panelGrid columns="2">
+                            <p:outputLabel value="Username:" for="username" />
+                            <p:inputText id="username" value="#{usuarioManagedBean.usuario.username}" title="Username" required="true" requiredMessage="The Username field is required."/>
+                            <p:outputLabel value="Password:" for="password" />
+                            <p:inputText id="password" value="#{usuarioManagedBean.usuario.password}" title="Password" required="true" requiredMessage="The Password field is required."/>
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{usuarioManagedBean.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                            <p:outputLabel value="Apellido:" for="apellido" />
+                            <p:inputText id="apellido" value="#{usuarioManagedBean.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
+                            <p:outputLabel value="Email:" for="email" />
+                            <p:inputText id="email" value="#{usuarioManagedBean.usuario.email}" title="Email" required="true" requiredMessage="The Email field is required."/>
+                            <p:outputLabel value="Telefono:" for="telefono" />
+                            <p:inputText id="telefono" value="#{usuarioManagedBean.usuario.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
+                            <p:outputLabel value="IdRol:" for="idRol" />
+                            <p:selectOneMenu id="idRol" value="#{usuarioManagedBean.usuario.idRol}" required="true" requiredMessage="The IdRol field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{rolManagedBean.listarRol()}" var="rol" itemLabel="#{rol.nombreRol}"/>
+                            </p:selectOneMenu>
+                </p:panelGrid>
+                <p:commandButton actionListener="#{usuarioManagedBean.registrarUsuario()}" value="Publicar"/>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

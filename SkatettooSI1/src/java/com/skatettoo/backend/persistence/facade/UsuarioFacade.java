@@ -9,6 +9,7 @@ import com.skatettoo.backend.persistence.entities.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +28,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     public UsuarioFacade() {
         super(Usuario.class);
+    }
+
+    @Override
+    public Usuario iniciarSesion(Usuario us) throws Exception {
+        Usuario usuario = null;
+        TypedQuery<Usuario> query;
+        try {
+            query = em.createQuery("FROM Usuario u WHERE u.username = ?1 and u.password = ?2 ", Usuario.class);
+            query.setParameter(1, us.getUsername());
+            query.setParameter(2, us.getPassword());
+            if(!query.getResultList().isEmpty()){
+                usuario = query.getResultList().get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return usuario;
     }
     
 }

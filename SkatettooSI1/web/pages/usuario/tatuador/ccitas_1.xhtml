@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Citas | Skatettoo</title>
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../../css/estilos.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/parallax.css"></link>
+        <script src="../../../js/jquery-2.2.3.min.js"></script>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img class="logo" src="../../../img/ST Logotype.png"></img>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="noticia.xhtml">Crear noticia</a></li>
+                        <li><a href="cdisenios.xhtml">Crear Diseños</a></li>
+                        <li><a href="csucursal.xhtml">Sucursal</a></li>
+                        <li><a href="#">Citas</a></li>
+                        
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"></a></li>
+                        <li><a href="../../../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <p:commandLink action="/pages/usuario/tatuador/ccitas"/>
+        <f:view>
+            <center><h:form>
+                <h1><h:outputText value="Responder cita"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Descripcion:" for="descripcion" />
+                    <p:outputLabel id="descripcion" value="#{citaManagedBean.cita.descripcion}" title="Descripcion" />
+                    <p:outputLabel value="ValorTatuaje:" for="valorTatuaje" />
+                    <p:inputText id="valorTatuaje" value="#{citaManagedBean.cita.valorTatuaje}" title="ValorTatuaje" />
+                    <p:outputLabel value="FechaHora:" for="fechaHora" />
+                    <p:inputText id="fechaHora" value="#{citaManagedBean.cita.fechaHora}" title="FechaHora" required="true" requiredMessage="The FechaHora field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </p:inputText>
+                    <p:outputLabel value="Disenio:" for="idDisenio" />
+                    <p:outputLabel id="idDisenio" value="#{citaManagedBean.cita.idDisenio.nombreDisenio}" />
+                    <p:outputLabel value="Cliente:" for="idUsuario" />
+                    <p:outputLabel id="idUsuario" value="#{citaManagedBean.cita.idUsuario.nombre} #{citaManagedBean.cita.idUsuario.apellido}" />
+                    <p:outputLabel value="EstadoCita:" for="idEstadoCita" />
+                    <p:selectOneMenu id="idEstadoCita" value="#{citaManagedBean.cita.idEstadoCita}" required="true" requiredMessage="The IdEstadoCita field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{estadoCitaManagedBean.listarEstado}" var="estado" itemLabel="#{estado.nombreEstadoCita}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Sucursal:" for="idSucursal" />
+                    <p:outputLabel id="idSucursal" value="#{citaManagedBean.cita.idSucursal.nombre}" />
+                </p:panelGrid>
+                <p:commandButton value="Enviar" actionListener="#{citaManagedBean.modificarCita()}"/> 
+            </h:form></center>
+        </f:view>
+
+    </h:body>
+</html>
+

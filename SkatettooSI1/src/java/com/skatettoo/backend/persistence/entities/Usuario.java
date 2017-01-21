@@ -262,5 +262,9 @@ public class Usuario implements Serializable, IEntitie {
     public String getId() {
         return idUsuario.toString();
     }
+
+    public boolean getIdRol(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

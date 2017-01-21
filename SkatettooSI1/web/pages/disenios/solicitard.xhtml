@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Enviar Cita | Skatettoo</title>
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../css/estilos.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/parallax.css"></link>
+        <script src="../../js/jquery-2.2.3.min.js"></script>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value=""/></h1>
+                <p:panelGrid columns="2">
+                    <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{citaManagedBean.cita.descripcion}" title="Descripcion" required="true" requiredMessage="The Descripcion field is required."/>
+                    <p:outputLabel value="ValorTatuaje:" for="valorTatuaje" />
+                    <p:inputText id="valorTatuaje" value="#{citaManagedBean.cita.valorTatuaje}" title="ValorTatuaje" />
+                    <p:outputLabel value="Diseño:" for="idDisenio" />
+                    <p:selectOneMenu id="idDisenio" value="#{citaManagedBean.cita.idDisenio}" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{disenioManagedBean.listarDisenio()}" var="disenio" itemLabel="#{disenio.nombreDisenio}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Tatuador:" for="idUsuario" />
+                    <p:selectOneMenu id="idUsuario" value="#{citaManagedBean.cita.idUsuario}" required="true" requiredMessage="The IdUsuario field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{usuarioManagedBean.listarUsuario()}" var="tatuador" itemLabel="#{tatuador.nombre} #{tatuador.apellido}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="IdEstadoCita:" for="idEstadoCita" />
+                    <p:selectOneMenu id="idEstadoCita" value="#{citaManagedBean.cita.idEstadoCita}" required="true" requiredMessage="The IdEstadoCita field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{estadoCitaManagedBean.listarEstado()}" var="estado" itemLabel="#{estado.nombreEstadoCita}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
