@@ -62,7 +62,7 @@ public class SucursalManagedBean implements Serializable, Managedbean <Sucursal>
     
     public String verSucursal(Sucursal ss){
         sucu = ss;
-        return "";
+        return "/pages/disenios/sucurv";
     }
     
     public List<Sucursal> listarSucursal(){

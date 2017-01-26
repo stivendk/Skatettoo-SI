@@ -41,6 +41,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Disenio.findByPrecioDisenio", query = "SELECT d FROM Disenio d WHERE d.precioDisenio = :precioDisenio")})
 public class Disenio implements Serializable, IEntitie {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "nombreD")
+    private String nombreD;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -183,6 +189,14 @@ public class Disenio implements Serializable, IEntitie {
     @Override
     public String getId() {
         return idDisenio.toString();
+    }
+
+    public String getNombreD() {
+        return nombreD;
+    }
+
+    public void setNombreD(String nombreD) {
+        this.nombreD = nombreD;
     }
     
 }

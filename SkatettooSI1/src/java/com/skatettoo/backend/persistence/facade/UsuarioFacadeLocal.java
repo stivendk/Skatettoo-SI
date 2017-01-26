@@ -32,4 +32,5 @@ public interface UsuarioFacadeLocal {
     
     Usuario iniciarSesion(Usuario us)throws Exception;
     
+    List<Usuario> sucursalUsuario();
 }

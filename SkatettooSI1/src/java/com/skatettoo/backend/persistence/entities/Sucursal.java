@@ -45,6 +45,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sucursal.findByTelefono", query = "SELECT s FROM Sucursal s WHERE s.telefono = :telefono")})
 public class Sucursal implements Serializable, IEntitie {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "telefono")
+    private long telefono;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,10 +75,6 @@ public class Sucursal implements Serializable, IEntitie {
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "telefono")
-    private int telefono;
     @JoinTable(name = "usuario_sucursal", joinColumns = {
         @JoinColumn(name = "id_sucursal", referencedColumnName = "id_sucursal")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
@@ -140,13 +141,6 @@ public class Sucursal implements Serializable, IEntitie {
         this.descripcion = descripcion;
     }
 
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
 
     @XmlTransient
     public List<Usuario> getUsuarioList() {
@@ -202,6 +196,14 @@ public class Sucursal implements Serializable, IEntitie {
     @Override
     public String getId() {
         return idSucursal.toString();
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
     }
     
 }

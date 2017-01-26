@@ -6,7 +6,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>#{disenioManagedBean.disenio.nombreDisenio} | Skatettoo</title>
+        <title>#{disenioManagedBean.disenio.nombreD} | Skatettoo</title>
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css"></link>
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"></link>
         <link rel="stylesheet" type="text/css" href="../../css/estilos.css"></link>
@@ -23,23 +23,24 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../usuario/inicio.xhtml#">
+                    <a class="navbar-brand" href="../usuario/inicio.xhtml">
                         <img class="logo" src="../../img/ST Logotype.png"></img>
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="cita.xhtml">Solicitar cita</a></li>
-                        <li><a class="active" href="disenios.xhtml">Diseños</a></li>
+                        <li class="active"><a href="disenios.xhtml">Diseños</a></li>
                         <li><a href="sucursales.xhtml">Sucursales</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Configuración</a></li>
-                        <li><a href="#">Cerrar Sesión</a></li>
+                        <li><a href="../usuario/config.xhtml" onclick="#{usuarioManagedBean.actualizarUsuario(us)}">Configuracion</a></li>
+                        <li><a href="../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <p:link value="Regresar" outcome="/pages/disenios/disenios"/>
         <center><div class="container">    
             <div class="row">
                 <div>				
@@ -56,16 +57,17 @@
                             </div>
 
                             <div class="col-md-12 panelBottom">
-                                <div class="col-md-4 text-center">
-                                    <button jsf:action="/pages/disenios/cita?faces-redirect=true" class="btn btn-lg btn-add-to-cart" ><span class="glyphicon glyphicon-shopping-cart"></span>Solicitar cita</button>						
-                                </div>
                                 <div class="col-md-4 text-left">
                                     <h5>Price <span class="itemPrice">$#{disenioManagedBean.disenio.precioDisenio}</span></h5>
                                 </div>
                                 <div class="col-md-4">
                                     <div>
+                                        <br/>
                                         <a>##{disenioManagedBean.disenio.idEstiloDisenio.nombreEstilo}</a>
                                     </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <h:link outcome="/pages/disenios/cita?faces-redirect=true" class="btn btn-lg btn-add-to-cart" value="Solicitar cita" ></h:link>						
                                 </div>
                             </div>
                         </div>
@@ -73,7 +75,6 @@
                 </div>
             </div>
         </div></center>
-        <p:commandLink value="Regresar" action="/pages/disenios/disenios"/>
         
     </h:body>
 </html>

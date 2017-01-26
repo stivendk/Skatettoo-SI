@@ -1,23 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
         <title>Sucursales | Skatettoo</title>
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css"></link>
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"></link>
         <link rel="stylesheet" type="text/css" href="../../css/estilos.css"></link>
-        <link rel="stylesheet" type="text/css" href="../../css/sucursal.css"></link>
-        <link rel="stylesheet" type="text/css" href="css/parallax.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../css/sucur.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../css/gallery.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../css/parallax.css"></link>
         <script src="../../js/jquery-2.2.3.min.js"></script>
-        <style>
-            .capa2{
-                background-color: rgba(255, 255, 255, 0.6);
-            }
-        </style>
     </h:head>
     <h:body>
         <nav class="navbar navbar-default">
@@ -35,34 +33,44 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="cita.xhtml">Solicitar cita</a></li>
-                        <li><a href="disenios.xhtml">Diseños</a></li>
-                        <li><a class="active" href="#">Sucursales</a></li>
+                        <li><a href="../disenios/cita.xhtml">Solicitar cita</a></li>
+                        <li><a href="../disenios/disenios.xhtml">Diseños</a></li>
+                        <li><a href="../disenios/sucursales.xhtml">Sucursales</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Configuración</a></li>
-                        <li><a href="#">Cerrar Sesión</a></li>
+                        <li><a href="../usuario/config.xhtml" onclick="#{usuarioManagedBean.actualizarUsuario(us)}">Configuracion</a></li>
+                        <li><a href="../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <section class="capa2">
-            <div>
-                <ui:repeat value="#{sucursalManagedBean.listarSucursal()}" var="item">
-                    <div class="col-page col-sm-4 col-md-3">
-                        <div class="text">
-                            <div class="content-text">
-                                <h2>#{item.nombre}</h2>
-                                <p>#{item.direccion} #{item.idLocalidad.localidad}</p>
-                                <h3>#{item.telefono}</h3>
-                                <p>#{item.descripcion}</p>
-                                <p:commandButton value="ver" action="#{sucursalManagedBean.verSucursal(item)}"></p:commandButton>
-                            </div>
+        <h:form>
+            <section class="publicaciones-blog-home">
+                <center><div class="container">
+                        <div class="row-page row">
+                            <h2>Sucursales</h2>
+                            <ui:repeat value="#{sucursalManagedBean.listarSucursal()}" var="sucur"> 
+                                <div class="">
+                                    <div class="col-page col-sm-8 col-md-6">
+                                        <a jsf:action="#{sucursalManagedBean.verSucursal(sucur)}" class="black fondo-publicacion-home">
+                                            <div class="img-publicacion-principal-home">
+                                                <img class="" src="../../img/#{sucur.fotoSuc}.jpg"/>
+                                            </div>
+                                            <div class="contenido-publicacion-principal-home">
+                                                <h3>#{sucur.nombre}</h3>
+                                                <p>#{sucur.descripcion}<span>...</span></p>
+                                            </div>
+                                            <div class="mascara-enlace-blog-home">
+                                                <span>Ver </span>
+                                            </div> 
+                                        </a>
+                                    </div>
+                                </div>
+                            </ui:repeat>    
                         </div>
-                    </div>
-                </ui:repeat>
-            </div>
-        </section>
+                    </div></center>
+            </section>
+        </h:form>
     </h:body>
 </html>
 

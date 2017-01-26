@@ -6,6 +6,7 @@
 package com.skatettoo.frontend.controllers;
 
 import com.plandemjr.frontend.util.Managedbean;
+import com.skatettoo.backend.persistence.entities.Sucursal;
 import com.skatettoo.backend.persistence.entities.Usuario;
 import com.skatettoo.backend.persistence.facade.UsuarioFacadeLocal;
 import javax.inject.Named;
@@ -45,8 +46,9 @@ public class UsuarioManagedBean implements Serializable, Managedbean<Usuario> {
         usuario = new Usuario();
     }
     
-    public void registrarUsuario(){
+    public String registrarUsuario(){
         usuariofc.create(usuario);
+        return "/pages/usuario/inicio?faces-redirect=true";
     }
     
     public void eliminarUsuario(Usuario u){
@@ -72,4 +74,7 @@ public class UsuarioManagedBean implements Serializable, Managedbean<Usuario> {
         return usuariofc.find(i);
     }
     
+    public List<Usuario> listarSucur(){
+       return usuariofc.findAll();
+    }
 }

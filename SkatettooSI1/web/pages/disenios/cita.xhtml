@@ -12,7 +12,6 @@
         <link rel="stylesheet" type="text/css" href="../../css/estilos.css"></link>
         <link rel="stylesheet" type="text/css" href="../../css/sucursal.css"></link>
         <link rel="stylesheet" type="text/css" href="css/parallax.css"></link>
-        <script src="../../js/jquery-2.2.3.min.js"></script>
     </h:head>
     <h:body>
         <nav class="navbar navbar-default">
@@ -30,40 +29,47 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Solicitar cita</a></li>
+                        <li class="active"><a href="cita.xhtml">Solicitar cita</a></li>
                         <li><a href="disenios.xhtml">Diseños</a></li>
                         <li><a href="sucursales.xhtml">Sucursales</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Configuración</a></li>
-                        <li><a href="#">Cerrar Sesión</a></li>
+                        <li><a href="../usuario/config.xhtml" onclick="#{usuarioManagedBean.actualizarUsuario(us)}">Configuracion</a></li>
+                        <li><a href="../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <f:view>
             <center><h:form>
+                    
                 <h1><h:outputText value="Cita"/></h1>
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="IdDisenio:" for="idDisenio" />
-                    <h:selectOneMenu id="idDisenio" value="#{citaManagedBean.cita.idDisenio}" >
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{disenioManagedBean.listarDisenio()}" var="disenio" itemLabel="#{disenio.nombreDisenio}"/>
-                    </h:selectOneMenu>
-                    <p:outputLabel value="Descripcion:" for="descripcion" />
-                    <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{citaManagedBean.cita.descripcion}" title="Descripcion" required="true" requiredMessage="The Descripcion field is required."/>
-                    <p:outputLabel value="ValorTatuaje:" for="valorTatuaje" />
-                    <p:inputText id="valorTatuaje" value="#{citaManagedBean.cita.valorTatuaje}" title="ValorTatuaje" />
-                    <p:outputLabel value="IdUsuario:" for="idUsuario" />
-                    <h:selectOneMenu id="idUsuario" value="#{citaManagedBean.cita.idSucursal}" required="true" requiredMessage="The IdUsuario field is required.">
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{sucursalManagedBean.listarSucursal()}" var="sucursal" itemLabel="#{sucursal.nombre}"/>
-                    </h:selectOneMenu>
-                </p:panelGrid>
-                <p:commandButton value="Enviar" actionListener="#{citaManagedBean.registrarCita()}"/>
+                        <p:panelGrid columns="2">
+                        <p:outputLabel value="Disenio:" for="idDisenio" />
+                        <p:selectOneMenu id="idDisenio" value="#{citaManagedBean.cita.idDisenio}" >
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{disenioManagedBean.listarDisenio()}" var="dis" itemLabel="#{dis.nombreD}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Descripcion:" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{citaManagedBean.cita.descripcion}" title="Descripcion" required="true" requiredMessage="The Descripcion field is required."/>
+                        <p:outputLabel value="FechaHora:" for="fechaHora" />
+                        <p:inputText id="fechaHora" value="#{citaManagedBean.cita.fechaHora}" title="FechaHora" required="true" requiredMessage="The FechaHora field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </p:inputText>
+                        <p:outputLabel value="Usuario:" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{citaManagedBean.cita.idUsuario}" required="true" requiredMessage="The IdUsuario field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{usuarioManagedBean.listarUsuario()}" var="usu" itemLabel="#{usu.nombre} #{usu.apellido}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Sucursal:" for="idSucursal" />
+                        <p:selectOneMenu id="idSucursal" value="#{citaManagedBean.cita.idSucursal}" required="true" requiredMessage="The IdSucursal field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{sucursalManagedBean.listarSucursal()}" var="sucu" itemLabel="#{sucu.nombre}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                <h:commandButton value="Enviar" class="btn btn-lg btn-add-to-cart" actionListener="#{citaManagedBean.solicitarCita()}"/>
             </h:form></center>
         </f:view>
-
     </h:body>
 </html>
 

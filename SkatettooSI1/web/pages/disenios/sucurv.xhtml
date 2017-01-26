@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css"></link>
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"></link>
         <link rel="stylesheet" type="text/css" href="../../css/estilos.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../css/sucurv.css"></link>
         <link rel="stylesheet" type="text/css" href="css/parallax.css"></link>
         <script src="../../js/jquery-2.2.3.min.js"></script>
     </h:head>
@@ -31,36 +32,46 @@
                     <ul class="nav navbar-nav">
                         <li><a href="cita.xhtml">Solicitar cita</a></li>
                         <li><a href="disenios.xhtml">Diseños</a></li>
-                        <li><a class="active" href="#">Sucursales</a></li>
+                        <li class="active"><a href="sucursales.xhtml">Sucursales</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Configuración</a></li>
-                        <li><a href="#">Cerrar Sesión</a></li>
+                        <li><a href="../usuario/config.xhtml" onclick="#{usuarioManagedBean.actualizarUsuario(us)}">Configuracion</a></li>
+                        <li><a href="../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <p:commandLink value="Regresar" action="/pages/disenios/sucursales"></p:commandLink>
-        <section >
-            <f:view>
-            <center><h:form>
-                <h1><h:outputText value="#{sucursalManagedBean.sucu.nombre}"/></h1>
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Nombre:" for="nombre" />
-                    <p:outputLabel id="nombre" value="#{sucursalManagedBean.sucu.nombre}" title="Nombre" />
-                    <p:outputLabel value="Direccion:" for="direccion" />
-                    <p:outputLabel id="direccion" value="#{sucursalManagedBean.sucu.direccion}" title="Direccion" />
-                    <p:outputLabel value="Descripcion:" for="descripcion" />
-                    <p:outputLabel  id="descripcion" value="#{sucursalManagedBean.sucu.descripcion}" title="Descripcion" />
-                    <p:outputLabel value="Telefono:" for="telefono" />
-                    <p:outputLabel id="telefono" value="#{sucursalManagedBean.sucu.telefono}" title="Telefono" />
-                    <p:outputLabel value="IdLocalidad:" for="idLocalidad" />
-                    <p:outputLabel id="idLocalidad" value="#{sucursalManagedBean.sucu.idLocalidad}" />
-                </p:panelGrid>
-            </h:form></center>
-        </f:view>
-        </section>
+        <p:link value="Regresar" outcome="/pages/disenios/sucursales"></p:link>
+        <div class="container fondo">
+            <div class="row">
+                <div class="twPc-div">
+                    <a class="twPc-bg twPc-block"></a>
 
+                    <div>
+                        <div class="twPc-avatarLink">
+                            <img alt="Mert Salih Kaplan" src="../../img/#{sucursalManagedBean.sucu.fotoSuc}.jpg" class="twPc-avatarImg"/>
+                        </div>
+
+                        <div class="twPc-divUser">
+                            <br/>
+                            <br/>
+                            <br/>
+                            <center><h1>#{sucursalManagedBean.sucu.nombre}</h1>
+                            <br/>
+                            <a href=""><h2>Tatuadores</h2></a>
+                            <p>#{sucursalManagedBean.sucu.direccion}</p>
+                            <p>#{sucursalManagedBean.sucu.telefono}</p>
+                            <br/>
+                            <p>#{sucursalManagedBean.sucu.descripcion}</p></center>
+                        </div>
+                    </div>
+                </div>
+                <div class="invs">
+                    
+                </div>
+                <!-- code end -->
+            </div>
+        </div>
     </h:body>
 </html>
 
