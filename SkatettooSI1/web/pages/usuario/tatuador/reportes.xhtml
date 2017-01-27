@@ -11,99 +11,106 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Reportes</title>
+        <title>Reportes | Skatettoo</title>
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../../../css/estilos.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/parallax.css"></link>
+        <script src="../../../js/jquery-2.2.3.min.js"></script>
     </h:head>
     <h:body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img class="logo" src="../../../img/ST Logotype.png"></img>
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="noticia.xhtml">Crear noticia</a></li>
+                        <li><a href="cdisenios.xhtml">Crear Diseños</a></li>
+                        <li><a href="csucursal.xhtml">Sucursal</a></li>
+                        <li><a href="reportes.xhtml">Reportes</a></li>
+                        <li><a href="#">Citas</a></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"></a></li>
+                        <li><a href="../../../../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <f:view>
             <h:form>
-                <p:dataTable id="tbl" var="car" value="#{dataExporterView.cars}"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px">
-
-                        <f:facet name="{Exporters}">
-                            <h:commandLink>
-                                <p:graphicImage name="/demo/images/excel.png" width="24"/>
-                                <p:dataExporter type="xls" target="tbl" fileName="cars" />
-                            </h:commandLink>
-
-                            <h:commandLink>
-                                <p:graphicImage name="/demo/images/pdf.png" width="24"/>
-                                <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
-                            </h:commandLink>
-
-                            <h:commandLink>
-                                <p:graphicImage name="/demo/images/csv.png" width="24"/>
-                                <p:dataExporter type="csv" target="tbl" fileName="cars" />
-                            </h:commandLink>
-
-                            <h:commandLink>
-                                <p:graphicImage name="/demo/images/xml.png" width="24"/>
-                                <p:dataExporter type="xml" target="tbl" fileName="cars" />
-                            </h:commandLink>
+                <p:dataTable value="#{citaManagedBean.listarCita()}" var="c" id="tabla">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripcion"/>
                         </f:facet>
+                        <h:outputText value="#{c.descripcion}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ValorTatuaje"/>
+                        </f:facet>
+                        <h:outputText value="#{c.valorTatuaje}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="FechaHora"/>
+                        </f:facet>
+                        <h:outputText value="#{c.fechaHora}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="DisenioAdjunto"/>
+                        </f:facet>
+                        <h:outputText value="#{c.disenioAdjunto}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdUsuario"/>
+                        </f:facet>
+                        <h:outputText value="#{c.idUsuario}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdDisenio"/>
+                        </f:facet>
+                        <h:outputText value="#{c.idDisenio}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdEstadoCita"/>
+                        </f:facet>
+                        <h:outputText value="#{c.idEstadoCita}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdSucursal"/>
+                        </f:facet>
+                        <h:outputText value="#{c.idSucursal}"/>
+                    </p:column>
                 </p:dataTable>
-                <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{citaManagedBean.listarCita()}" var="item">
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdCita"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idCita}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Descripcion"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ValorTatuaje"/>
-                            </f:facet>
-                            <h:outputText value="#{item.valorTatuaje}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="FechaHora"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaHora}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="DisenioAdjunto"/>
-                            </f:facet>
-                            <h:outputText value="#{item.disenioAdjunto}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdUsuario"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idUsuario}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdDisenio"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idDisenio}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdEstadoCita"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idEstadoCita}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdSucursal"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idSucursal}"/>
-                        </p:column>
-                    </p:dataTable>
-                
+                <h:commandLink>
+                    <p:graphicImage name="../../../img/excel.jpg" />
+                    <p:dataExporter type="csv" target="tabla" fileName="citas"/>
+                </h:commandLink>
+                <h:commandLink>
+                    <p:graphicImage name="../../../img/pdf.png" />
+                    <p:dataExporter type="pdf" target="tabla" fileName="citas"/>
+                </h:commandLink>
             </h:form>
         </f:view>
-
     </h:body>
 </html>
