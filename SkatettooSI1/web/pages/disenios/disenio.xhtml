@@ -42,41 +42,42 @@
             </div>
         </nav>
         <p:link value="Regresar" outcome="/pages/disenios/disenios"/>
-        <center><div class="container">    
-            <div class="row">
-                <div>				
-                    <div class="panel panel-default  panel--styled" style="width: 634px;">
-                        <div class="panel-body">
-                            <div class="col-md-12 panelTop">	
-                                <div class="col-md-4">	
-                                    <img class="img-responsive" src="../../img/#{disenioManagedBean.disenio.nombreDisenio}.jpg" alt=""/>
-                                </div>
-                                <div class="col-md-8">	
-                                    <h2>#{disenioManagedBean.disenio.idUsuario.nombre} #{disenioManagedBean.disenio.idUsuario.apellido}</h2>
-                                    <p>#{disenioManagedBean.disenio.anotaciones}</p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 panelBottom">
-                                <div class="col-md-4 text-left">
-                                    <h5>Price <span class="itemPrice">$#{disenioManagedBean.disenio.precioDisenio}</span></h5>
-                                </div>
-                                <div class="col-md-4">
-                                    <div>
-                                        <br/>
-                                        <a>##{disenioManagedBean.disenio.idEstiloDisenio.nombreEstilo}</a>
+        <h:form>
+            <center><div class="container">    
+                    <div class="row">
+                        <div>				
+                            <div class="panel panel-default  panel--styled" style="width: 634px;">
+                                <div class="panel-body">
+                                    <div class="col-md-12 panelTop">	
+                                        <div class="col-md-4">	
+                                            <img class="img-responsive" src="../../img/#{disenioManagedBean.disenio.nombreDisenio}.jpg" alt=""/>
+                                        </div>
+                                        <div class="col-md-8">	
+                                            <h2>#{disenioManagedBean.disenio.idUsuario.nombre} #{disenioManagedBean.disenio.idUsuario.apellido}</h2>
+                                            <p>#{disenioManagedBean.disenio.anotaciones}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <h:link outcome="/pages/disenios/cita?faces-redirect=true" class="btn btn-lg btn-add-to-cart" value="Solicitar cita" ></h:link>						
+
+                                    <div class="col-md-12 panelBottom">
+                                        <div class="col-md-4 text-left">
+                                            <h5>Price <span class="itemPrice">$#{disenioManagedBean.disenio.precioDisenio}</span></h5>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div>
+                                                <br/>
+                                                <a jsf:action="#{disenioManagedBean.estiloDisenio()}">##{disenioManagedBean.disenio.idEstiloDisenio.nombreEstilo}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <h:link outcome="/pages/disenios/cita?faces-redirect=true" class="btn btn-lg btn-add-to-cart" value="Solicitar cita" ></h:link>						
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div></center>
-        
+                </div></center>
+        </h:form>
     </h:body>
 </html>
 

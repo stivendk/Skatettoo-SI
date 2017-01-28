@@ -6,6 +6,7 @@
 package com.skatettoo.backend.persistence.facade;
 
 import com.skatettoo.backend.persistence.entities.Disenio;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,10 @@ public class DisenioFacade extends AbstractFacade<Disenio> implements DisenioFac
     public DisenioFacade() {
         super(Disenio.class);
     }
-    
+
+    /*@Override
+    public List<Disenio> estiloDisenio(int estilo) {
+        return em.createNamedQuery("Disenio.estilo").setParameter("id_estilo_disenio", estilo).getResultList();
+    }
+    */
 }

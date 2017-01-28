@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Disenio.findAll", query = "SELECT d FROM Disenio d"),
     @NamedQuery(name = "Disenio.findByIdDisenio", query = "SELECT d FROM Disenio d WHERE d.idDisenio = :idDisenio"),
     @NamedQuery(name = "Disenio.findByNombreDisenio", query = "SELECT d FROM Disenio d WHERE d.nombreDisenio = :nombreDisenio"),
+    @NamedQuery(name = "Disenio.estilo", query = "SELECT d FROM Disenio d WHERE d.id_estilo_disenio LIKE :id_estilo_disenio"),
     @NamedQuery(name = "Disenio.findBySesionesRecomendadas", query = "SELECT d FROM Disenio d WHERE d.sesionesRecomendadas = :sesionesRecomendadas"),
     @NamedQuery(name = "Disenio.findByPrecioDisenio", query = "SELECT d FROM Disenio d WHERE d.precioDisenio = :precioDisenio")})
 public class Disenio implements Serializable, IEntitie {

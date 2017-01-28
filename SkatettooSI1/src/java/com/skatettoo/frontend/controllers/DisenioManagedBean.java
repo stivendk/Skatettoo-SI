@@ -21,12 +21,14 @@ import javax.ejb.EJB;
  */
 @Named(value = "disenioManagedBean")
 @SessionScoped
-public class DisenioManagedBean implements Serializable, Managedbean <Disenio> {
+public class DisenioManagedBean implements Serializable, Managedbean<Disenio> {
 
     private Disenio disenio;
     @EJB
     private DisenioFacadeLocal diseniofc;
-    
+    private List<Disenio> resultado;
+    private int estilo;
+
     public DisenioManagedBean() {
     }
 
@@ -37,40 +39,56 @@ public class DisenioManagedBean implements Serializable, Managedbean <Disenio> {
     public void setDisenio(Disenio disenio) {
         this.disenio = disenio;
     }
-    
+
+    public List<Disenio> getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(List<Disenio> resultado) {
+        this.resultado = resultado;
+    }
+
+    public int getEstilo() {
+        return estilo;
+    }
+
+    public void setEstilo(int estilo) {
+        this.estilo = estilo;
+    }
+
     @PostConstruct
-    public void init(){
+    public void init() {
         disenio = new Disenio();
     }
-    
-    public void registrarDisenio(){
+
+    public void registrarDisenio() {
         diseniofc.create(disenio);
     }
-    
-    public void eliminarDisenio(){
+
+    public void eliminarDisenio() {
         diseniofc.remove(disenio);
     }
-    
-    public void editarDisenio(){
+
+    public void editarDisenio() {
         diseniofc.edit(disenio);
     }
-    
-    public String actualizarDisenio(Disenio d){
+
+    public String actualizarDisenio(Disenio d) {
         disenio = d;
         return "";
     }
-    
-    public String verDisenio(Disenio d){
+
+    public String verDisenio(Disenio d) {
         disenio = d;
         return "/pages/disenios/disenio";
     }
-    
-    public String solicitarDisenio(Disenio d){
+
+    public String solicitarDisenio(Disenio d) {
         disenio = d;
         return "/pages/disenios/citas";
     }
-    
-    public List<Disenio> listarDisenio(){
+
+    public List<Disenio> listarDisenio() {
         return diseniofc.findAll();
     }
 
@@ -78,5 +96,40 @@ public class DisenioManagedBean implements Serializable, Managedbean <Disenio> {
     public Disenio getObject(Integer i) {
         return diseniofc.find(i);
     }
+
+    /*public String estiloDisenio() {
+        int esti = 0;
+        try {
+        resultado = diseniofc.estiloDisenio(estilo);
+            if (esti == 1) {
+                return "/pages/disenios/estilos/caligrafia";
+            } if (esti == 2){
+                return "/pages/disenios/estilos/acuarela";
+            } if (esti == 3){
+                return "/pages/disenios/estilos/sakyant";
+            } if (esti == 4){
+                return "/pages/disenios/estilos/animados";
+            }if (esti == 5){
+                return "/pages/disenios/estilos/realismo";
+            }if (esti == 6){
+                return "/pages/disenios/estilos/biomecanicos";
+            }if (esti == 7){
+                return "/pages/disenios/estilos/henna";
+            }if (esti == 8){
+                return "/pages/disenios/estilos/coverup";
+            }if (esti == 9){
+                return "/pages/disenios/estilos/ilustracion";
+            }if (esti == 10){
+                return "/pages/disenios/estilos/minimalista";
+            }if (esti == 11){
+                return "/pages/disenios/estilos/tradicional";
+            }if (esti == 12){
+                return "/pages/disenios/estilos/geometricos";
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+    */
     
 }

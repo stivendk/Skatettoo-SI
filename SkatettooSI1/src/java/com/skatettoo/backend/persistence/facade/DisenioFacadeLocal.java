@@ -30,4 +30,5 @@ public interface DisenioFacadeLocal {
 
     int count();
     
+    //List<Disenio> estiloDisenio(int estilo);
 }
