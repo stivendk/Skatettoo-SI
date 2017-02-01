@@ -79,27 +79,27 @@ and open the template in the editor.
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="IdUsuario"/>
+                            <h:outputText value="Usuario"/>
                         </f:facet>
-                        <h:outputText value="#{c.idUsuario}"/>
+                        <h:outputText value="#{c.idUsuario.nombre}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="IdDisenio"/>
+                            <h:outputText value="Disenio"/>
                         </f:facet>
-                        <h:outputText value="#{c.idDisenio}"/>
+                        <h:outputText value="#{c.idDisenio.nombreD}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="IdEstadoCita"/>
+                            <h:outputText value="EstadoCita"/>
                         </f:facet>
-                        <h:outputText value="#{c.idEstadoCita}"/>
+                        <h:outputText value="#{c.idEstadoCita.nombreEstadoCita}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="IdSucursal"/>
+                            <h:outputText value="Sucursal"/>
                         </f:facet>
-                        <h:outputText value="#{c.idSucursal}"/>
+                        <h:outputText value="#{c.idSucursal.nombre}"/>
                     </p:column>
                 </p:dataTable>
                 <h:commandLink>
